@@ -2,7 +2,7 @@
 import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { createTask } from '@/actions/task.action'
 import toast from 'react-hot-toast'
 
@@ -10,8 +10,11 @@ import toast from 'react-hot-toast'
 const AddTodo = () => {
     const { register, handleSubmit, reset } = useForm()
 
-    const submitForm = async (data) => {
+   
+
+    const submitForm = async (data: FieldValues) => {
         console.log(data)
+
         try {
             const res = await createTask({ title: data.task, dueDate: new Date(data.dueDate) });
             
@@ -22,6 +25,7 @@ const AddTodo = () => {
             }
             
             toast.success(res.message);
+            reset();
         } catch (error: any) {
             console.log(error.message);
         }

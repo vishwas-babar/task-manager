@@ -35,14 +35,14 @@ export const createUser = async (formData: { email: string, password: string }) 
         console.log("hashed password: ", hashedPassword)
 
         // Create new user
-        const newUser = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 email: validate.data.email,
                 password: hashedPassword,
             }
         })
 
-        const signinStatus = await signIn('credentials', {
+        await signIn('credentials', {
             redirect: false,
             email: formData.email,
             password: formData.password,
@@ -64,7 +64,7 @@ export const createUser = async (formData: { email: string, password: string }) 
 
 export const signinUser = async (formData: { email: string, password: string }) => {
     try {
-        const signinStatus = await signIn('credentials', {
+       await signIn('credentials', {
             redirect: false,
             email: formData.email,
             password: formData.password,

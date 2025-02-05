@@ -16,6 +16,7 @@ const Signup = () => {
 
             if (res.success) {
                 console.log(res.message)
+                reset()
                 window.location.href = '/'
             }
 

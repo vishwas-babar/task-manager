@@ -1,4 +1,4 @@
-import NextAuth, { AuthError, CredentialsSignin } from "next-auth";
+import NextAuth, {CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "./lib/prisma";
 import authSchema from "./schema/userSchema";
@@ -83,4 +83,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     pages: {
         signIn: '/signin',
     },
+    trustHost: true
 });

@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { deleteTask, getSingleTask, updateTask } from '@/actions/task.action';
+import { getSingleTask, updateTask } from '@/actions/task.action';
 import toast from 'react-hot-toast';
 import { Task } from '@prisma/client';
 import { Input } from './ui/input';
@@ -16,12 +16,12 @@ import { Button } from './ui/button';
 import { useForm } from 'react-hook-form';
 
 const UpdateTaskDialog = ({ modalTriggerRef, updateTaskId }: {
-  modalTriggerRef: React.MutableRefObject<null>,
+  modalTriggerRef: React.MutableRefObject<HTMLButtonElement | null>,
   updateTaskId: string,
 }) => {
 
   const [currentTask, setCurrentTask] = useState<Task | null>();
-  const [isTaskLoading, setIsTaskLoading] = useState(true); 44
+  const [isTaskLoading, setIsTaskLoading] = useState(true); 
 
   const { handleSubmit, register } = useForm({
     values: {

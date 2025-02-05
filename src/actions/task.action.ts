@@ -43,7 +43,8 @@ export const createTask = async (data: { title: string, dueDate: Date }) => {
 
         return {
             message: "taskCreated",
-            success: true
+            success: true,
+            data: createdTask
         }
         
     } catch (error: any) {
@@ -96,6 +97,7 @@ export const updateTask = async (data: { title: string, dueDate: Date | string, 
             data: {
                 title: data.title,
                 dueDate: dueDate,
+                
             }
         })
 
@@ -108,7 +110,8 @@ export const updateTask = async (data: { title: string, dueDate: Date | string, 
 
         return {
             message: "task updated",
-            success: true
+            success: true,
+            data: updatedTask
         }
 
     } catch (error: any) {

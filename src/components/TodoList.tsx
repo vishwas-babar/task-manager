@@ -13,14 +13,6 @@ import { CheckCircle, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { deleteTask, getAllUsersTasks, markTaskAsDone } from "@/actions/task.action";
 import toast from "react-hot-toast";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
 import UpdateTaskDialog from "./UpdateTaskDialog";
 
 
@@ -39,7 +31,7 @@ const TodoList = () => {
 
 
     // for updating a task
-    const modalTriggerRef = useRef<null>(null)
+    const modalTriggerRef = useRef<HTMLButtonElement | null>(null)
     const [updateTaskId, setUpdateTaskId] = useState("");
 
     useEffect(() => {

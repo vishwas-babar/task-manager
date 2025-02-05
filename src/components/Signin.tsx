@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React from 'react'
 import { signinUser } from '@/actions/action'
-import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 const Signin = () => {
@@ -15,6 +14,10 @@ const Signin = () => {
     const submitForm = async (data: any) => {
         try {
             const res = await signinUser(data);
+
+            if (!res) {
+               return   toast.error("something went wrong!")
+            }
 
             if (res.success) {
                 console.log(res.message)
@@ -111,7 +114,7 @@ const Signin = () => {
                   </div>
               </form>
               <p className="mt-10 text-center text-sm/6 text-gray-500">
-                  Don't have an Account? {" "}
+                  {"Don't"} have an Account? {" "}
                   <Link
                       href="/signup"
                       className="font-semibold text-indigo-600 hover:text-indigo-500"
