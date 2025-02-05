@@ -14,6 +14,8 @@ import { Task } from '@prisma/client';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { useForm } from 'react-hook-form';
+import { useRecoilRefresher_UNSTABLE } from 'recoil';
+import { tasksState } from '@/state/state';
 
 const UpdateTaskDialog = ({ modalTriggerRef, updateTaskId }: {
   modalTriggerRef: React.MutableRefObject<HTMLButtonElement | null>,
@@ -22,6 +24,7 @@ const UpdateTaskDialog = ({ modalTriggerRef, updateTaskId }: {
 
   const [currentTask, setCurrentTask] = useState<Task | null>();
   const [isTaskLoading, setIsTaskLoading] = useState(true); 
+  const triggerRecoilSelectorUpdate =  useRecoilRefresher_UNSTABLE(tasksState)
 
   const { handleSubmit, register } = useForm({
     values: {
@@ -57,6 +60,7 @@ const UpdateTaskDialog = ({ modalTriggerRef, updateTaskId }: {
          loading: "updating a task",
          success: (res: any) => {
            if (res.success) {
+              triggerRecoilSelectorUpdate()
              return res.message
            } else {
              throw new Error(res.message)

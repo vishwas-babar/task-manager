@@ -5,10 +5,15 @@ import { Button } from './ui/button'
 import { FieldValues, useForm } from 'react-hook-form'
 import { createTask } from '@/actions/task.action'
 import toast from 'react-hot-toast'
+import { useRecoilRefresher_UNSTABLE } from 'recoil'
+import { tasksState } from '@/state/state'
 
 
 const AddTodo = () => {
     const { register, handleSubmit, reset } = useForm()
+
+    // for updating the current state after adding a new task
+    const triggerRecoilRefresh = useRecoilRefresher_UNSTABLE(tasksState);
 
    
 
@@ -25,6 +30,7 @@ const AddTodo = () => {
             }
             
             toast.success(res.message);
+            triggerRecoilRefresh();
             reset();
         } catch (error: any) {
             console.log(error.message);
