@@ -86,10 +86,8 @@ export const signinUser = async (formData: { email: string, password: string }) 
                 case "CredentialsSignin":
                     return { message: error.message.split('.')[0] }
                 default:
-                    return { message: error.message || "Something went wrong!" }
+                    return { message: "Something went wrong!" }
             }
         }
-
-        throw error
     }
 }
